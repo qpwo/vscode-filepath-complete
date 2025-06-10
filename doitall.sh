@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -exuo pipefail
 
+convert -background none -resize 128x128 icon.svg icon.png
+
 echo "Compiling extension..."
 pnpm install # Ensure devDependencies like typescript are installed
 pnpm run compile

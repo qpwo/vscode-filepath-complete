@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "publisher": "qpwo",
   "private": false,
+  "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/qpwo/vscode-shell-completions.git"

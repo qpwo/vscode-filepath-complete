@@ -1,10 +1,10 @@
-# vscode-shell-completions
+# vscode shell script file/dir intellisense
 
 vscode extension to tab-complete (intellisense) filenames in shell scripts. based on last 'cd' command before cursor.
 
-![](shot1.png)
-
 ![](shot2.png)
+
+![](shot1.png)
 
 ![](shot3.png)
 
