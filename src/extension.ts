@@ -10,6 +10,11 @@ export function activate(context: vscode.ExtensionContext) {
             async provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
                 const lineText = document.lineAt(position.line).text;
                 const textBeforeCursor = lineText.substring(0, position.character);
+
+                // Add a small delay if the user is typing a path to avoid being too aggressive.
+                if (textBeforeCursor.length > 0 && !textBeforeCursor.endsWith(' ')) {
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                }
                 const words = textBeforeCursor.split(/\s+/);
                 const currentWord = words.pop() || '';
 
@@ -42,11 +47,16 @@ export function activate(context: vscode.ExtensionContext) {
 
                         if (entry.isDirectory()) {
                             item.insertText = completion + '/';
+                            // Re-trigger completions after inserting a directory path
+                            item.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions' };
                         } else {
                             item.insertText = completion;
                         }
 
-                        item.sortText = (entry.isDirectory() ? 'a_' : 'b_') + entry.name;
+                        const isDot = entry.name.startsWith('.');
+                        const typePrefix = entry.isDirectory() ? 'a' : 'b';
+                        const dotPrefix = isDot ? 'z' : 'a';
+                        item.sortText = `${dotPrefix}_${typePrefix}_${entry.name}`;
                         return item;
                     });
                 } catch (err) {
