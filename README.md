@@ -1,20 +1,20 @@
-# VSCode Shell Completions
+# vscode-shell-completions
 
-A Visual Studio Code extension that provides tab-completion (IntelliSense) for file and directory paths in shell scripts (`.sh`).
+vscode extension to tab-complete (intellisense) filenames in shell scripts. based on last 'cd' command before cursor.
 
-## How It Works
+![](shot1.png)
 
-The extension determines the current working directory for completions by searching upwards from your cursor's position for the last `cd` command. All subsequent path completions will be relative to that directory.
+![](shot2.png)
 
-For example, in a file `script.sh`:
+![](shot3.png)
 
-# Completions here will be from the workspace root (or home dir)
-ls D # -> Documents/
+For example, if you are editing script.sh:
 
-cd ~/Projects/my-project
+```sh
+cd ~/git/vscode-shell-completions
+cat R # hit tab here and see README.md etc
+```
 
-# Completions from here on will be inside ~/Projects/my-project
-cat s # -> src/
-cat src/m # -> src/main.js
+It is based on last cd command before the line where your cursor is.
 
-If no `cd` command is found above the cursor, the extension defaults to using the path of the current workspace folder. If no workspace is open, it falls back to the user's home directory.
+Thats it.

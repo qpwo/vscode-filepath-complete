@@ -1,7 +1,7 @@
 {
-  "name": "vscode-shell-completions",
+  "name": "shell-filepath-intellisense",
   "displayName": "bash/zsh filename intellisense/autocomplete",
-  "description": "Tab-complete filenames in shell scripts based on the last `cd` command.",
+  "description": "Tab-complete filenames/filepaths in shell scripts based on the last `cd` command.",
   "version": "0.1.0",
   "publisher": "qpwo",
   "private": false,

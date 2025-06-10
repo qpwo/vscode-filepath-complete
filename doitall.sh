@@ -17,7 +17,7 @@ fi
 echo "Packaged to $VSIX_PATH"
 
 echo "Uninstalling old version..."
-code --uninstall-extension qpwo.vscode-shell-completions --force || echo "Old version not found, continuing..."
+code --uninstall-extension qpwo.shell-filepath-intellisense --force || echo "Old version not found, continuing..."
 
 echo "Installing new version..."
 code --install-extension "$VSIX_PATH" --force
