@@ -1,0 +1,32 @@
+{
+  "name": "vscode-shell-completions",
+  "displayName": "Shell Completions",
+  "description": "Tab-complete filenames in shell scripts based on the last `cd` command.",
+  "version": "0.1.0",
+  "publisher": "halp-generated",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/user/vscode-shell-completions.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:shellscript"
+  ],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "18.x",
+    "typescript": "^5.3.3"
+  }
+}
