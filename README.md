@@ -1,5 +1,7 @@
 # vscode shell script file/dir intellisense
 
+`code --install-extension qpwo.shell-filepath-intellisense`
+
 vscode extension to tab-complete (intellisense) filenames in shell scripts. based on last 'cd' command before cursor.
 
 ![](shot2.png)
