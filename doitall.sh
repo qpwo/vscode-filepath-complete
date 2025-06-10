@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -exuo pipefail
 
+trash -v *.vsix || true
+
 convert -background none -resize 128x128 icon.svg icon.png
 
 echo "Compiling extension..."

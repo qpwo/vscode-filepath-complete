@@ -2,13 +2,13 @@
   "name": "shell-filepath-intellisense",
   "displayName": "bash/zsh filename intellisense/autocomplete",
   "description": "Tab-complete filenames/filepaths in shell scripts based on the last `cd` command.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "qpwo",
   "private": false,
   "icon": "icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/qpwo/vscode-shell-completions.git"
+    "url": "https://github.com/qpwo/vscode-filepath-complete.git"
   },
   "engines": {
     "vscode": "^1.75.0"
