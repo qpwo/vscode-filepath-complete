@@ -60,4 +60,5 @@ echo "Test setup complete. Opening VS Code in $TMPDIR"
 echo "Check completions in test.sh"
 code "$TMPDIR"
 # Cleanup vsix file
-rm "$VSIX_PATH"
+# rm "$VSIX_PATH"
+echo VSIX_PATH="$VSIX_PATH"
