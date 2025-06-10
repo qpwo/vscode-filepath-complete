@@ -62,34 +62,31 @@ export function activate(context: vscode.ExtensionContext) {
 function findCwd(document: vscode.TextDocument, position: vscode.Position): string {
     const textBefore = document.getText(new vscode.Range(new vscode.Position(0, 0), position));
     const lines = textBefore.split('\n');
-    let lastCdPath: string | null = null;
+    const cdPaths: string[] = [];
 
-    for (let i = lines.length - 1; i >= 0; i--) {
-        const cdPattern = new RegExp('^\s*cd\s+((~|\.\.?|[/\\w.-]+)(?:/[/\\w.-]+)*|"[^"]+"|\'[^\']+\')');
-        const match = lines[i].match(cdPattern);
-
-        if (match?.groups?.[1] || match?.[1]) {
+    const cdPattern = /^\s*cd\s+((~|\.\.?|[\/\w.-]+)(?:[\/\w.-]+)*|"[^"]+"|\'[^\']+\')/;
+    for (const line of lines) {
+        const match = line.match(cdPattern);
+        if (match?.[1]) {
             let p = match[1].trim();
             if ((p.startsWith('"') && p.endsWith('"')) || (p.startsWith("'") && p.endsWith("'"))) {
                 p = p.substring(1, p.length - 1);
             }
-            lastCdPath = p;
-            break;
+            cdPaths.push(p);
         }
     }
 
-    const workspaceDir = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || os.homedir();
+    let currentPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || os.homedir();
 
-    if (!lastCdPath) {
-        return workspaceDir;
+    for (const cdPath of cdPaths) {
+        const expandedPath = cdPath.startsWith('~') ? path.join(os.homedir(), cdPath.substring(1)) : cdPath;
+        if (path.isAbsolute(expandedPath)) {
+            currentPath = expandedPath;
+        } else {
+            currentPath = path.resolve(currentPath, expandedPath);
+        }
     }
 
-    const expandedPath = lastCdPath.startsWith('~') ? path.join(os.homedir(), lastCdPath.substring(1)) : lastCdPath;
-
-    if (path.isAbsolute(expandedPath)) {
-        return expandedPath;
-    }
-
-    return path.resolve(workspaceDir, expandedPath);
+    return currentPath;
 }
 export function deactivate() {}

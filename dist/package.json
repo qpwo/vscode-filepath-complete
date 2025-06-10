@@ -1,12 +1,13 @@
 {
   "name": "vscode-shell-completions",
-  "displayName": "Shell Completions",
+  "displayName": "bash/zsh filename intellisense/autocomplete",
   "description": "Tab-complete filenames in shell scripts based on the last `cd` command.",
   "version": "0.1.0",
-  "publisher": "halp-generated",
+  "publisher": "qpwo",
+  "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/user/vscode-shell-completions.git"
+    "url": "https://github.com/qpwo/vscode-shell-completions.git"
   },
   "engines": {
     "vscode": "^1.75.0"
